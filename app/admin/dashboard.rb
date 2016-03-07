@@ -3,10 +3,24 @@ ActiveAdmin.register_page "Dashboard" do
   menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
-    div class: "blank_slate_container", id: "dashboard_default_message" do
-      span class: "blank_slate" do
-        span I18n.t("active_admin.dashboard_welcome.welcome")
-        small I18n.t("active_admin.dashboard_welcome.call_to_action")
+
+    section "Patients without address" do
+      table_for Patient.where(:address_id => nil).limit(3) do
+        column :name do |patient|
+          link_to patient.name, [:admin, patient]
+        end
+        column :address
+        column :created_at
+      end
+    end
+
+    section "Last Practices" do
+      table_for Practice.order('created_at desc').limit(3) do
+        column :name do |practice|
+          link_to practice.name, [:admin, practice]
+        end
+        column :address
+        column :created_at
       end
     end
 
