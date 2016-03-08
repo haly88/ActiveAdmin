@@ -24,13 +24,14 @@ permit_params :name, :address_id
 # end
 
 	index do
+		selectable_column
     column :name
     column :address
     actions
   end
 
-  sidebar :help do
-  	"Need help? Email us at help@example.com"
+  sidebar :evisit_sidebar do
+  	"eVisit sidebar"
 	end
 
 	form do |f|

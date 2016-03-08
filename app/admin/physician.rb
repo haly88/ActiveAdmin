@@ -1,5 +1,7 @@
 ActiveAdmin.register Physician do
 
+	form partial: 'form'
+
 	menu parent: "People"
 
 	scope :no_address
@@ -20,13 +22,14 @@ permit_params :name, :address_id
 
 
 	index do
+		selectable_column
     column :name
     column :address
     actions
   end
 
-  sidebar :help do
-  	"Need help? Email us at help@example.com"
+  sidebar :evisit_sidebar do
+  	"eVisit sidebar"
 	end
 
 end
